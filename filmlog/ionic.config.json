@@ -1,0 +1,7 @@
+{
+  "name": "filmlog",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

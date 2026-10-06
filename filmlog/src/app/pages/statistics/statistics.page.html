@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Statistics</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  @if (hasData) {
+    <div class="chart-container ion-margin-bottom">
+      <h2 class="ion-text-center">Top 6 Genres</h2>
+      <canvas #pieChart></canvas>
+    </div>
+
+    <div class="chart-container ion-margin-bottom">
+      <h2 class="ion-text-center">Viewing by Release Decade</h2>
+      <canvas #barChart></canvas>
+    </div>
+
+    <div class="table-container">
+      <h2 class="ion-text-center">Most Watched Movies</h2>
+      <ion-grid class="custom-table">
+        <ion-row class="table-header">
+          <ion-col size="8"><strong>Title</strong></ion-col>
+          <ion-col size="4" class="ion-text-center"><strong>Views</strong></ion-col>
+        </ion-row>
+        @for (item of topMoviesTable; track item.movie.imdbID) {
+          <ion-row class="table-row">
+            <ion-col size="8">{{ item.movie.title }}</ion-col>
+            <ion-col size="4" class="ion-text-center">
+              <ion-badge color="primary">{{ item.timesWatched }}x</ion-badge>
+            </ion-col>
+          </ion-row>
+        }
+      </ion-grid>
+    </div>
+  } @else {
+    <div class="ion-text-center ion-margin-top">
+      <p>Watch some movies to generate your charts!</p>
+    </div>
+  }
+</ion-content>

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/search"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Movie Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  @if (movie) {
+    <div class="movie-card">
+      <img [src]="movie.poster !== 'N/A' ? movie.poster : 'assets/placeholder.png'" class="movie-poster" />
+
+      <h1>{{ movie.title }}</h1>
+      <p><strong>Year:</strong> {{ movie.year }}</p>
+      <p><strong>Genre:</strong> {{ movie.genre }}</p>
+      <p><strong>Actors:</strong> {{ movie.actors }}</p>
+    </div>
+
+    <ion-button expand="block" color="primary" (click)="addToWatchlist()">
+      Add to Watchlist
+    </ion-button>
+    
+    <ion-button expand="block" color="success" (click)="markAsWatched()">
+      Mark as Watched
+    </ion-button>
+  } @else {
+    <div class="ion-text-center">
+      <p>No movie selected. Please go back and select a movie.</p>
+    </div>
+  }
+</ion-content>

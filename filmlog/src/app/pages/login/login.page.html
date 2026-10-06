@@ -1,0 +1,33 @@
+<ion-content class="login-content">
+  <div class="login-container">
+    <div class="logo-section">
+      <h1 class="app-title">FilmLog</h1>
+      <p class="app-subtitle">Track your movie journey</p>
+    </div>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="your@email.com">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input
+        type="password"
+        [(ngModel)]="password">
+      </ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="login()" class="login-btn">
+      Log in
+    </ion-button>
+
+    <p class="signup-link" (click)="signup()">
+      Don't have an account? Sign up
+    </p>
+  </div>
+</ion-content>

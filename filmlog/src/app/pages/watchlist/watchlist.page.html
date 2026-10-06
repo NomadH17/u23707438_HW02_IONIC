@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Watchlist</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (watchlist.length > 0) {
+    <p class="list-count">
+      {{ watchlist.length }} movies
+    </p>
+
+    <ion-grid>
+      <ion-row>
+        @for (movie of watchlist; track movie.imdbID) {
+          <ion-col size="6">
+            <div class="movie-card" (click)="openDetail(movie)">
+              <div class="card-image-wrapper">
+                
+                <img [src]="movie.poster !== 'N/A' ? movie.poster : 'assets/no-poster.png'" alt="poster" />
+                
+                <ion-button
+                  fill="clear"
+                  color="danger"
+                  class="remove-btn"
+                  (click)="removeMovie($event, movie)">
+                  <ion-icon name="close-circle"></ion-icon>
+                </ion-button>
+              </div>
+              
+              <p class="movie-title">{{ movie.title }}</p>
+              <p class="movie-year">{{ movie.year }}</p>
+              
+            </div>
+          </ion-col>
+        }
+      </ion-row>
+    </ion-grid>
+  } @else {
+    <div class="empty-state">
+      <ion-icon name="bookmark-outline" size="large"></ion-icon>
+      <p>Your watchlist is empty.</p>
+      <p>Search for movies to add them.</p>
+    </div>
+  }
+</ion-content>

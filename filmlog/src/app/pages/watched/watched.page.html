@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Watched</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (watchedList.length > 0) {
+    <p class="list-count">
+      {{ watchedList.length }} movies watched
+    </p>
+
+    <ion-grid>
+      <ion-row>
+        @for (item of watchedList; track item.movie.imdbID) {
+          <ion-col size="6">
+            
+            <div class="movie-card" (click)="openDetail(item.movie)">
+              <div class="card-image-wrapper">
+                
+                <img [src]="item.movie.poster !== 'N/A' ? item.movie.poster : 'assets/no-poster.png'" alt="poster" />
+                
+                <span class="times-badge">{{ item.timesWatched }}x</span>
+                
+                <div class="card-actions">
+                  <ion-button
+                    fill="clear"
+                    size="small"
+                    (click)="resetWatched($event, item.movie)"
+                    title="Reset to Watchlist">
+                    <ion-icon name="refresh-circle" color="warning"></ion-icon>
+                  </ion-button>
+                  <ion-button
+                    fill="clear"
+                    size="small"
+                    color="danger"
+                    (click)="removeMovie($event, item.movie)">
+                    <ion-icon name="close-circle"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+              
+              <p class="movie-title">{{ item.movie.title }}</p>
+              <p class="movie-year">{{ item.movie.year }}</p>
+            </div>
+          </ion-col>
+        }
+      </ion-row>
+    </ion-grid>
+  } @else {
+    <div class="empty-state">
+      <ion-icon name="checkmark-circle-outline" size="large"></ion-icon>
+      <p>No movies watched yet.</p>
+      <p>Mark movies as watched from your Watchlist.</p>
+    </div>
+  }
+</ion-content>
